@@ -13,15 +13,10 @@ function Layout({ children }) {
       id='top'
       className={`${
         isDark ? 'bg-slate-700 text-white' : 'bg-white'
-      } flex flex-col relative`}
+      } flex flex-col`}
     >
       <Header isDark={isDark} toggleDarkMode={toggleDarkMode} />
-      <div className='py-10 px-8 md:px-20 lg:px-30 min-h-screen'>
-        {children}
-      </div>
-      <a href='#top' className='goToTop absolute right-4 bottom-4'>
-        Go to top
-      </a>
+      <div className='px-8 md:px-20 lg:px-30 min-h-screen'>{children}</div>
       <Footer />
     </div>
   );

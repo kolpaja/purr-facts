@@ -5,7 +5,7 @@ import catLogo from '../assets/cat-icon.png';
 
 function Header({ isDark, toggleDarkMode }) {
   return (
-    <nav className='flex text-2xl flex-row w-screen justify-between px-4 sm:px-16 py-4 border-b border-slate-100 mb-4'>
+    <nav className='flex text-2xl flex-row w-screen shadow-md justify-between px-4 sm:px-16 py-4 border-b border-slate-100 mb-4'>
       <Link className='logo flex items-center' to='/'>
         <img src={catLogo} className='contain w-[40px] h-[40] mr-1' />
         <h2>Purr Facts</h2>
