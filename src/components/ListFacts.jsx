@@ -70,12 +70,15 @@ const ListFacts = () => {
 
   return (
     <section id='facts' className='relative'>
-      <h1 className='text-center text-xl font-bold mb-10'>
+      <h1 className='text-center text-xl sm:text-3xl font-bold mb-10'>
         Well now we explore... purrfect
       </h1>
+
       <div className='min-h-screen  grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
         {/* rendering catFacts */}
         {listContent}
+
+        {/* show is loading */}
         {isLoading && (
           <div>
             <Loading />

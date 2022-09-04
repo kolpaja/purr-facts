@@ -1,32 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
-  FaCopy,
   FaInstagram,
   FaQuoteLeft,
   FaQuoteRight,
   FaVolumeUp,
-  FaCheckCircle,
 } from 'react-icons/fa';
-import { BsFileEarmarkCheckFill } from 'react-icons/bs';
 import { DarkModeContext } from '../context/themeContext';
+import CopyText from './CopyText';
 
 const CardFact = React.forwardRef(({ fact, idx }, ref) => {
   const { theme } = useContext(DarkModeContext);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = (text) => {
-    window.navigator.clipboard
-      .writeText(text)
-      .then(() => setCopied(true))
-      .catch((error) => {
-        console.log(error);
-        setCopied(false);
-      });
-
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
-  };
 
   const cardBody = (
     <div
@@ -55,23 +38,13 @@ const CardFact = React.forwardRef(({ fact, idx }, ref) => {
             <FaVolumeUp />
           </li>
           <li className='mr-2 relative rounded-full p-2 border border-slate-500'>
-            {copied ? (
-              <>
-                <BsFileEarmarkCheckFill />
-                <span className='absolute -bottom-10 flex items-center rounded-md px-2 py-1 bg-white border border-slate-400 -right-6'>
-                  <FaCheckCircle className='text-green-400 mr-2' /> Copied!
-                </span>
-              </>
-            ) : (
-              <FaCopy onClick={() => handleCopy(`${fact.fact}-by People`)} />
-            )}
+            <CopyText text={`${fact.fact} -by people`} />
           </li>
           <li className=' rounded-full p-2 border border-slate-500'>
             <FaInstagram />
           </li>
         </ul>
 
-        {/* todo keep in mind when viewing a single cat fact, index +1 */}
         <a
           href={`/facts/${fact.id}`}
           className='bg-sky-400 w-full sm:w-auto text-[16px] text-center px-2 lg:text-xl sm:px-4 py-2 rounded-xl font-bold text-white hover:bg-sky-700 hover:text-white hover:scale-105'

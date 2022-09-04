@@ -1,10 +1,13 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import catThrowsVase from '../assets/Cat-throwing-a-vase.svg';
 import { CatFactsContext } from '../context/catFactsContext';
+import { FaArrowDown } from 'react-icons/fa';
 
 function Hero() {
-  const { total } = useContext(CatFactsContext);
+  const { total, isLoading } = useContext(CatFactsContext);
+
+  useEffect(() => {}, [isLoading]);
+
   return (
     <div className='flex flex-col h-screen relative items-center justify-around sm:flex-row w-full m-auto mb-16'>
       <div className='left'>
@@ -12,16 +15,23 @@ function Hero() {
           Welcome to <s>Cat Facts</s> Purr Facts
         </h1>
 
-        <h3 className='text-xl font-semiBold mb-10'>
+        <h3 className='text-xl sm:text-2xl font-semiBold mb-10'>
           Yeah! You want to pet me, <br />
           but how much do you know me?
         </h3>
 
+        <div className='total text-xl sm:text-3xl font-semiBold mb-10'>
+          <h1>
+            Explore a total of <span>{total} facts</span>
+          </h1>
+        </div>
+
         <a
           href='/#facts'
-          className='text-xl py-2 pl-4 pr-8 rounded-md bg-gradient-to-r from-blue-500 to-cyan-500'
+          className='text-xl py-2 px-4 inline-flex w-[190px] items-center rounded-md bg-gradient-to-r from-blue-500 to-cyan-500'
         >
-          Explore
+          <span> Explore Now</span>
+          <FaArrowDown className='ml-4' />
         </a>
       </div>
       <div>
