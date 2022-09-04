@@ -11,7 +11,9 @@ export const CatFactsContextProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [lastPage, setLastPage] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(
+    JSON.parse(localStorage.getItem('total')) || 0
+  );
 
   const fetchFacts = async (pageNr) => {
     setIsLoading(true);
@@ -19,22 +21,25 @@ export const CatFactsContextProvider = ({ children }) => {
 
     try {
       const response = await fetchCatFacts(pageNr);
-      console.log(response);
+      // console.log({ response });
       setLastPage(response.last_page);
       setTotal(response.total);
       setHasNextPage(Boolean(response.data));
+
       if (response.current_page > 1) {
         preData = [...data, ...response.data];
       } else {
         preData = [...response.data];
       }
+
       const mutateData = preData.map((item, idx) => {
         return { ...item, id: `fact-${idx + 1}` };
       });
+
       setIsLoading(false);
       localStorage.setItem('facts', JSON.stringify(mutateData));
+      localStorage.setItem('total', JSON.stringify(response.total));
       setData(mutateData);
-      console.log(mutateData);
     } catch (error) {
       console.log(error);
       setIsError(true);

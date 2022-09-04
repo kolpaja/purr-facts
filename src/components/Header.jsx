@@ -3,9 +3,13 @@ import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import catLogo from '../assets/cat-icon.png';
 
-function Header({ isDark, toggleDarkMode }) {
+function Header({ theme, toggleDarkMode, scrolled }) {
   return (
-    <nav className='flex text-2xl flex-row w-screen shadow-md justify-between px-4 sm:px-16 py-4 border-b border-slate-100 mb-4'>
+    <nav
+      className={`${scrolled ? 'bg-slate-100 header-bg' : ''} ${
+        theme === 'dark' ? 'bg-slate-700' : 'bg-slate-100'
+      } flex  text-2xl flex-row w-screen fixed z-30 shadow-md justify-between px-4 sm:px-16 py-4 border-b border-slate-100 mb-4`}
+    >
       <Link className='logo flex items-center' to='/'>
         <img src={catLogo} className='contain w-[40px] h-[40] mr-1' />
         <h2>Purr Facts</h2>
@@ -20,9 +24,9 @@ function Header({ isDark, toggleDarkMode }) {
       </ul>
       <div
         className='toggle-dark-mode rounded-full grid  border border-slate-500  w-8 h-8 hover:cursor-pointer'
-        onClick={toggleDarkMode}
+        onClick={() => toggleDarkMode()}
       >
-        {isDark ? (
+        {theme === 'dark' ? (
           <MdLightMode className='text-[20px] place-self-center' />
         ) : (
           <MdDarkMode className='text-[20px] place-self-center' />
