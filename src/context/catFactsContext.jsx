@@ -19,7 +19,6 @@ export const CatFactsContextProvider = ({ children }) => {
 
     try {
       const response = await fetchCatFacts(pageNr);
-      console.log(response);
       setLastPage(response.last_page);
       setTotal(response.total);
       setHasNextPage(Boolean(response.data));
@@ -34,7 +33,7 @@ export const CatFactsContextProvider = ({ children }) => {
       setIsLoading(false);
       localStorage.setItem('facts', JSON.stringify(mutateData));
       setData(mutateData);
-      console.log(mutateData);
+      // console.log(mutateData);
     } catch (error) {
       console.log(error);
       setIsError(true);

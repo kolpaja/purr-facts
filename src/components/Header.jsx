@@ -3,7 +3,7 @@ import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import catLogo from '../assets/cat-icon.png';
 
-function Header({ isDark, toggleDarkMode }) {
+function Header({ theme, toggleDarkMode }) {
   return (
     <nav className='flex text-2xl flex-row w-screen shadow-md justify-between px-4 sm:px-16 py-4 border-b border-slate-100 mb-4'>
       <Link className='logo flex items-center' to='/'>
@@ -20,9 +20,9 @@ function Header({ isDark, toggleDarkMode }) {
       </ul>
       <div
         className='toggle-dark-mode rounded-full grid  border border-slate-500  w-8 h-8 hover:cursor-pointer'
-        onClick={toggleDarkMode}
+        onClick={() => toggleDarkMode()}
       >
-        {isDark ? (
+        {theme === 'dark' ? (
           <MdLightMode className='text-[20px] place-self-center' />
         ) : (
           <MdDarkMode className='text-[20px] place-self-center' />

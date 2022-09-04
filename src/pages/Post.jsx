@@ -6,6 +6,7 @@ import { FaVolumeUp, FaCopy, FaInstagram, FaRegTrashAlt } from 'react-icons/fa';
 import playfulCat from '../assets/Playful-cat.svg';
 import catLogo from '../assets/cat-icon.png';
 import inboxCleanup from '../assets/Inbox-cleanup.svg';
+import { DarkModeContext } from '../context/themeContext';
 
 function POSTS() {
   const [fact, setFact] = useState(null);
@@ -14,9 +15,9 @@ function POSTS() {
   const navigate = useNavigate();
 
   const { catFacts, deleteFact, isLoading } = useContext(CatFactsContext);
+  const { theme } = useContext(DarkModeContext);
 
   const handleDelete = (id) => {
-    console.log(id);
     const message = deleteFact(id);
     console.log({ message });
     setIsDeleted(true);
@@ -50,7 +51,11 @@ function POSTS() {
 
       <div className='fact-message mb-10 relative w-[500px] h-[300px] '>
         <div className='w-[300px] grid p-8  h-[175px] rounded-3xl bg-white border border-slate-300 absolute top-0 left-[190px]'>
-          <p className='text-xl place-self-center text-center'>
+          <p
+            className={`${
+              theme === 'dark' ? 'text-black' : ''
+            } text-xl place-self-center text-center'`}
+          >
             {fact && fact.fact}
           </p>
         </div>

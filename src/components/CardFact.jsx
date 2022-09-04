@@ -1,20 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   FaCopy,
   FaInstagram,
   FaQuoteLeft,
   FaQuoteRight,
   FaVolumeUp,
+  FaCheckCircle,
 } from 'react-icons/fa';
+import { BsFileEarmarkCheckFill } from 'react-icons/bs';
 import { DarkModeContext } from '../context/themeContext';
 
 const CardFact = React.forwardRef(({ fact, idx }, ref) => {
-  const { isDark } = useContext(DarkModeContext);
+  const { theme } = useContext(DarkModeContext);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (text) => {
+    window.navigator.clipboard
+      .writeText(text)
+      .then(() => setCopied(true))
+      .catch((error) => {
+        console.log(error);
+        setCopied(false);
+      });
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
 
   const cardBody = (
     <div
       className={` ${
-        isDark ? 'bg-slate-100 text-black' : 'bg-stone-200'
+        theme === 'dark' ? 'bg-slate-100 text-black' : 'bg-stone-200'
       } shadow-xl  flex flex-col py-4 px-8 min-h-[300px] justify-between items-center rounded-md border border-sky-400 p-4 hover:scale-105 `}
     >
       <h2 className='quote-title font-bold text-2xl mb-4'>
@@ -37,8 +54,17 @@ const CardFact = React.forwardRef(({ fact, idx }, ref) => {
           <li className='mr-2 rounded-full p-2 border border-slate-500'>
             <FaVolumeUp />
           </li>
-          <li className='mr-2 rounded-full p-2 border border-slate-500'>
-            <FaCopy />
+          <li className='mr-2 relative rounded-full p-2 border border-slate-500'>
+            {copied ? (
+              <>
+                <BsFileEarmarkCheckFill />
+                <span className='absolute -bottom-10 flex items-center rounded-md px-2 py-1 bg-white border border-slate-400 -right-6'>
+                  <FaCheckCircle className='text-green-400 mr-2' /> Copied!
+                </span>
+              </>
+            ) : (
+              <FaCopy onClick={() => handleCopy(`${fact.fact}-by People`)} />
+            )}
           </li>
           <li className=' rounded-full p-2 border border-slate-500'>
             <FaInstagram />
