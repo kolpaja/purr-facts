@@ -38,7 +38,7 @@ const ListFacts = () => {
 
       intObserverRef.current = new IntersectionObserver((catFacts) => {
         if (catFacts[0].isIntersecting && hasNextPage) {
-          console.log('we are near the last element');
+          // console.log('we are near the last element');
           setPageNr((prev) => prev + 1);
           if (lastPage > pageNr) {
             fetchFacts(pageNr);
@@ -69,7 +69,7 @@ const ListFacts = () => {
   if (isError) return <div>{error}</div>;
 
   return (
-    <section id='facts' className='relative'>
+    <section id='facts' className='relative pt-20'>
       <h1 className='text-center text-xl sm:text-3xl font-bold mb-10'>
         Well now we explore... purrfect
       </h1>
@@ -86,6 +86,15 @@ const ListFacts = () => {
           </div>
         )}
       </div>
+
+      {/* reaching the end of all the fact list*/}
+      {hasReachEnd && (
+        <div className='w-[500px] my-10 mx-auto'>
+          <h1 className='text-center text-xl sm:text-3xl'>
+            thats all we got now...purr bye!
+          </h1>
+        </div>
+      )}
     </section>
   );
 };

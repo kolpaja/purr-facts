@@ -22,7 +22,7 @@ function Hero() {
 
         <div className='total text-xl sm:text-3xl font-semiBold mb-10'>
           <h1>
-            Explore a total of <span>{total} facts</span>
+            Explore a total of <span>{total - 1} facts</span>
           </h1>
         </div>
 

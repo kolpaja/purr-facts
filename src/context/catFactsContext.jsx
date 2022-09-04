@@ -21,6 +21,7 @@ export const CatFactsContextProvider = ({ children }) => {
 
     try {
       const response = await fetchCatFacts(pageNr);
+      // console.log({ response });
       setLastPage(response.last_page);
       setTotal(response.total);
       setHasNextPage(Boolean(response.data));
