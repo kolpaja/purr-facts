@@ -8,6 +8,7 @@ import catLogo from '../assets/cat-icon.png';
 import inboxCleanup from '../assets/Inbox-cleanup.svg';
 import { DarkModeContext } from '../context/themeContext';
 import CopyText from '../components/CopyText';
+import TextToSpeech from '../components/TextToSpeech';
 
 function POSTS() {
   const [fact, setFact] = useState(null);
@@ -84,7 +85,7 @@ function POSTS() {
       <div className='actions w-full flex flex-col sm:flex-row justify-between items-center pb-4 px-8 border-b border-slate-300'>
         <ul className='flex mb-4 sm:mb-0'>
           <li className='mr-2 rounded-full p-2 border border-slate-500'>
-            <FaVolumeUp />
+            <TextToSpeech text={fact && fact.fact} />
           </li>
           <li className='mr-2 rounded-full p-2 border border-slate-500'>
             <CopyText text={`${fact && fact.fact} -by people`} />
