@@ -47,7 +47,7 @@ const CardFact = React.forwardRef(({ fact, idx }, ref) => {
 
         <a
           href={`/facts/${fact.id}`}
-          className='bg-sky-400 w-full sm:w-auto text-[16px] text-center px-2 lg:text-xl sm:px-4 py-2 rounded-xl font-bold text-white hover:bg-sky-700 hover:text-white hover:scale-105'
+          className='bg-sky-400 w-full sm:w-auto  text-center px-2 text-[16px] sm:text-[18px] lg:text-[24] sm:px-4 py-2 rounded-xl font-bold text-white hover:bg-sky-700 hover:text-white hover:scale-105'
         >
           View Quote
         </a>

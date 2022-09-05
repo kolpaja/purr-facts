@@ -16,7 +16,8 @@ function POSTS() {
   const { factId } = useParams();
   const navigate = useNavigate();
 
-  const { catFacts, deleteFact, isLoading } = useContext(CatFactsContext);
+  const { catFacts, total, deleteFact, isLoading } =
+    useContext(CatFactsContext);
   const { theme } = useContext(DarkModeContext);
 
   const handleDelete = (id) => {

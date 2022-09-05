@@ -6,10 +6,10 @@ import { FaArrowDown } from 'react-icons/fa';
 function Hero() {
   const { total, isLoading } = useContext(CatFactsContext);
 
-  useEffect(() => {}, [isLoading]);
+  useEffect(() => {}, [isLoading, total]);
 
   return (
-    <div className='flex flex-col h-screen relative items-center justify-around sm:flex-row w-full m-auto mb-16'>
+    <div className='flex flex-col lg:flex-row h-screen relative items-center justify-start lg:justify-around  w-full m-auto mb-16'>
       <div className='left'>
         <h1 className='text-3xl font-bold mb-10'>
           Welcome to <s>Cat Facts</s> Purr Facts
@@ -34,7 +34,8 @@ function Hero() {
           <FaArrowDown className='ml-4' />
         </a>
       </div>
-      <div>
+
+      <div className='mt-10 lg:mt-0 contain'>
         <img src={catThrowsVase} width='500' height='400' />
       </div>
     </div>
