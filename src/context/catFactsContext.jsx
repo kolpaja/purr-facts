@@ -52,6 +52,9 @@ export const CatFactsContextProvider = ({ children }) => {
       JSON.stringify(data.filter((item) => item.id !== factId))
     );
     setData(JSON.parse(localStorage.getItem('facts')));
+
+    localStorage.setItem('total', JSON.stringify(total - 1));
+    setTotal(JSON.parse(localStorage.getItem('total')));
     return { message: 'Cat Fact deleted' };
   };
 
