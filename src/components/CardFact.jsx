@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa';
 import { DarkModeContext } from '../context/themeContext';
 import CopyText from './CopyText';
+import TextToSpeech from './TextToSpeech';
 
 const CardFact = React.forwardRef(({ fact, idx }, ref) => {
   const { theme } = useContext(DarkModeContext);
@@ -35,7 +36,7 @@ const CardFact = React.forwardRef(({ fact, idx }, ref) => {
       <div className='actions w-full flex flex-col sm:flex-row justify-between items-center pt-4 border-t border-slate-600'>
         <ul className='flex mb-4 sm:mb-0'>
           <li className='mr-2 rounded-full p-2 border border-slate-500'>
-            <FaVolumeUp />
+            <TextToSpeech text={fact.fact} />
           </li>
           <li className='mr-2 relative rounded-full p-2 border border-slate-500'>
             <CopyText text={`${fact.fact} -by people`} />
