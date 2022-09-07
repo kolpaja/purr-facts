@@ -14,6 +14,7 @@ function POSTS() {
   const [isDeleted, setIsDeleted] = useState(false);
 
   const { factId } = useParams();
+  console.log({ factId });
   const navigate = useNavigate();
 
   const { catFacts, total, deleteFact, isLoading } =
